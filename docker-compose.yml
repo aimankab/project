@@ -21,8 +21,10 @@ services:
     environment:
       "MONGO_INITDB_ROOT_USERNAME": root
       "MONGO_INITDB_ROOT_PASSWORD": F235vk26
+      "MONGO_INITDB_DATABASE": aiman
   mongo-express:
     image: mongo-express
+    restart: always
     networks:
       - backend
     ports:
@@ -30,8 +32,9 @@ services:
     container_name: mongo-express
     environment:
       "ME_CONFIG_MONGODB_SERVER": db
-      "ME_CONFIG_BASICAUTH_USERNAME": root
-      "ME_CONFIG_BASICAUTH_PASSWORD": F235vk26
+      "ME_CONFIG_MONGODB_PORT": 27017
+      "ME_CONFIG_MONGODB_ADMINUSERNAME": root
+      "ME_CONFIG_MONGODB_ADMINPASSWORD": F235vk26
     depends_on:
       - mongo
 networks:
