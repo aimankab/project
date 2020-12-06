@@ -15,24 +15,24 @@ services:
     image: mongo
     networks:
       - backend
-    port:
+    ports:
       - "27017:27017"
-    name: db
+    container_name: db
     environment:
       "MONGO_INITDB_ROOT_USERNAME": root
       "MONGO_INITDB_ROOT_PASSWORD": F235vk26
-    volumes:
-      - db
   mongo-express:
     image: mongo-express
     networks:
       - backend
-    port:
+    ports:
       - "8081:8081"
-    name: mongo-express
+    container_name: mongo-express
     environment:
       "ME_CONFIG_MONGODB_SERVER": db
       "ME_CONFIG_BASICAUTH_USERNAME": root
       "ME_CONFIG_BASICAUTH_PASSWORD": F235vk26
     depends_on:
       - mongo
+networks:
+    backend:
